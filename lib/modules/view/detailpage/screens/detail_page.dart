@@ -13,7 +13,19 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   late InAppWebViewController inAppWebViewController;
-  PullToRefreshController pullToRefreshController = PullToRefreshController();
+  late PullToRefreshController pullToRefreshController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    pullToRefreshController = PullToRefreshController(
+      settings: PullToRefreshSettings(color: Colors.blue),
+      onRefresh: () {
+        inAppWebViewController.reload();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
